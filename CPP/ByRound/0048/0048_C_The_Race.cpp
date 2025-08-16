@@ -1,0 +1,24 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/48/C
+ * Submit Date : 2025-08-09
+ */
+
+#include <bits/stdc++.h>
+int i, n, a, b, c = 1e9, e;
+int main() {
+  std::cin >> n;
+  while (i < n) {
+    std::cin >> a;
+    e = a * (n + 1) / (i + 1.0);
+    if (b < e)
+      b = e;
+    e = (a + 1.0 - 1e-9) * (n + 1) / (i + 1.0);
+    if (c > e)
+      c = e;
+    i++;
+  }
+  if (b == c)
+    std::cout << "unique\n" << b;
+  else
+    std::cout << "not unique\n";
+}

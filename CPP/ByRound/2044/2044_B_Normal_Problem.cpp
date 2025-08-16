@@ -1,0 +1,27 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/2044/B
+ * Submit Date : 2025-08-10
+ */
+
+#include <algorithm>
+#include <iostream>
+
+int main() {
+
+  long t;
+  std::cin >> t;
+  while (t--) {
+    std::string s;
+    std::cin >> s;
+    std::reverse(s.begin(), s.end());
+    for (size_t p = 0; p < s.size(); p++) {
+      if (s[p] == 'p') {
+        s[p] = 'q';
+      } else if (s[p] == 'q') {
+        s[p] = 'p';
+      }
+    }
+
+    std::cout << s << std::endl;
+  }
+}
