@@ -1,0 +1,23 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/1893/A
+ * Submit Date : 2025-08-21
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+int T, a[1000005];
+int main() {
+  scanf("%d", &T);
+  while (T--) {
+    int n, m, fl = 1;
+    scanf("%d%d", &n, &m);
+    m = min(n, m);
+    int kk = n;
+    for (int i = 1; i <= n; i++)
+      scanf("%d", &a[i]);
+    for (int i = 1; i <= m; i++)
+      fl &= (a[kk] <= n), kk -= a[kk], (kk < 1 ? (kk %= n, kk += n) : kk += 0);
+    printf(fl ? "Yes\n" : "No\n");
+  }
+  return 0;
+}
