@@ -1,0 +1,37 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/66/C
+ * Submit Date : 2025-08-16
+ */
+
+#include <algorithm>
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+string s;
+map<string, int> fi, bag;
+map<string, int>::iterator it;
+int main() {
+  fi.clear();
+  bag.clear();
+  while (cin >> s) {
+    int v = 0;
+    while (1) {
+      int pos = s.find_last_of('\\');
+      if (pos == 2)
+        break;
+      s.erase(s.begin() + pos, s.end());
+      bool flag = fi[s] == 0 && bag[s] == 0;
+      bag[s] += v;
+      if (flag)
+        ++v;
+      ++fi[s];
+    }
+  }
+  int x = 0, y = 0;
+  for (it = bag.begin(); it != bag.end(); ++it)
+    x = max(x, it->second);
+  for (it = fi.begin(); it != fi.end(); ++it)
+    y = max(y, it->second);
+  cout << x << " " << y << "\n";
+}

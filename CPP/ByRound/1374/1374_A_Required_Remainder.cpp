@@ -1,0 +1,7 @@
+/*
+ * Problem URL : https://codeforces.com/contest/1374/problem/A
+ * Submit Date : 2025-08-27
+ */
+
+#include<bits/stdc++.h>
+main(){int t,x,y,n;for(std::cin>>t;t--;){std::cin>>x>>y>>n,std::cout<<((n-y)/x)*x+y<<'\n';}}

@@ -1,0 +1,23 @@
+/*
+ * Problem URL : https://codeforces.com/contest/889/problem/A
+ * Submit Date : 2025-09-04
+ */
+
+#include<bits/stdc++.h>
+using namespace std;
+int n,ans,a[200010],b[200010];
+int main()
+{
+	scanf("%d",&n);
+	ans=1;
+	for(int i=1;i<=n;i++)scanf("%d",&a[i]);
+	for(int i=1;i<=n;i++)
+	{
+		if(!b[a[i]])
+		{
+			b[a[i]]=1;
+		}
+		else ans++;
+	}
+	printf("%d\n",ans);
+}

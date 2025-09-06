@@ -1,0 +1,25 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/362/B
+ * Submit Date : 2025-08-23
+ */
+
+#include <algorithm>
+#include <iostream>
+using namespace std;
+main() {
+  int n, s[3000], i, m, g = 1, p = 0;
+  cin >> n >> m;
+  i = m;
+  while (m--)
+    cin >> s[i - m - 1];
+  sort(s, s + i);
+  if (s[i - 1] == n || s[0] == 1)
+    p = 1;
+  while (g++ < i - 1)
+    if (s[g] - s[g - 2] == 2)
+      p = 1;
+  if (p)
+    cout << "NO";
+  else
+    cout << "YES";
+}
