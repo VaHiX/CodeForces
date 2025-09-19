@@ -1,0 +1,14 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/1020/B
+ * Submit Date : 2025-08-15
+ */
+
+#include <iostream>
+int a, i, j, n, p[1005], t[1005];
+main() {
+  for (std::cin >> n; i++ < n;)
+    std::cin >> p[i];
+  for (; a++ < n; std::cout << j << ' ')
+    for (j = a; t[j] < a; j = p[j])
+      t[j] = a;
+}

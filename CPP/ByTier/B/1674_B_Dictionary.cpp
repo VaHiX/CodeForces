@@ -1,0 +1,18 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/1674/B
+ * Submit Date : 2025-08-16
+ */
+
+#include <iostream>
+
+int main() {
+
+  long t;
+  std::cin >> t;
+  while (t--) {
+    std::string s;
+    std::cin >> s;
+    long res = 1 + 25 * (s[0] - 'a') + (s[1] - 'a') - (s[1] > s[0]);
+    std::cout << res << std::endl;
+  }
+}
