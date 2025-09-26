@@ -1,0 +1,18 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/1945/B
+ * Submit Date : 2025-08-12
+ */
+
+#include <cstdio>
+typedef long long ll;
+
+int main() {
+
+  long t;
+  scanf("%ld", &t);
+  while (t--) {
+    ll a, b, m;
+    scanf("%lld %lld %lld", &a, &b, &m);
+    printf("%lld\n", (m + a) / a + (m + b) / b);
+  }
+}
