@@ -1,0 +1,33 @@
+/*
+ * Problem URL : https://codeforces.com/contest/2014/problem/D
+ * Submit Date : 2025-09-12
+ */
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t--)
+	{
+		int n,d,k;
+		scanf("%d%d%d",&n,&d,&k);
+		vector<int>a(n+2);
+		for(int i=1,l,r;i<=k;i++)
+		{
+			scanf("%d%d",&l,&r);
+			++a[max(1,l-d+1)];
+			--a[r+1];
+		}
+		int mi=1,mx=1;
+		for(int i=1;i<=n-d+1;i++)
+		{
+			a[i]+=a[i-1];
+			if(a[i]<a[mi])mi=i;
+			if(a[i]>a[mx])mx=i;
+		}
+		printf("%d %d\n",mx,mi);
+	}
+	return 0;
+}
