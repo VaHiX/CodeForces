@@ -1,0 +1,25 @@
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/784/C
+ * Submit Date : 2025-08-22
+ */
+
+/*
+ * Problem URL : https://codeforces.com/problemset/problem/784/C
+ * Submit Date : 2025-08-22
+ */
+
+#include <cstdio>
+
+int main() {
+
+  int n;
+  scanf("%d", &n);
+  int max(0), x(0);
+  for (int p = 0; p < n; p++) {
+    scanf("%d", &x);
+    max = (x > max) ? x : max;
+  }
+  printf("%d\n", (max ^ x));
+
+  return 0;
+}
