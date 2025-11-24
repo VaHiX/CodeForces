@@ -1,0 +1,167 @@
+// Problem: CF 1066 C - Books Queries
+// https://codeforces.com/contest/1066/problem/C
+
+/*
+Books Queries
+Algorithms/Techniques: Simulation with tracking of book positions using counters for left and right placement,
+and storing the position of each book in an array to compute distances to edges.
+
+Time Complexity: O(q) where q is the number of queries
+Space Complexity: O(q) for storing book positions
+
+C. Books Queries
+time limit per test
+2 seconds
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+You have got a shelf and want to put some books on it.
+You are given q queries of three types:
+ 
+L id — put a book having index id on the shelf to the left from the leftmost existing book; 
+ 
+R id — put a book having index id on the shelf to the right from the rightmost existing book; 
+ 
+? id — calculate the minimum number of books you need to pop from the left or from the right in such a way that the book with index id will be leftmost or rightmost. 
+You can assume that the first book you will put can have any position (it does not matter) and queries of type 3 are always valid (it is guaranteed that the book in each such query is already placed). You can also assume that you don't put the same book on the shelf twice, so ids don't repeat in queries of first two types.
+Your problem is to answer all the queries of type 3 in order they appear in the input.
+Note that after answering the query of type 3 all the books remain on the shelf and the relative order of books does not change.
+If you are Python programmer, consider using PyPy instead of Python when you submit your code.
+Input
+The first line of the input contains one integer q (1 ≤ q ≤ 2·10^5) — the number of queries.
+Then q lines follow. The i-th line contains the i-th query in format as in the problem statement. It is guaranteed that queries are always valid (for query type 3, it is guaranteed that the book in each such query is already placed, and for other types, it is guaranteed that the book was not placed before).
+It is guaranteed that there is at least one query of type 3 in the input.
+In each query the constraint 1 ≤ id ≤ 2·10^5 is met.
+Output
+Print answers to queries of the type 3 in order they appear in the input.
+Examples
+Input
+8
+L 1
+R 2
+R 3
+? 2
+L 4
+? 1
+L 5
+? 1
+Output
+1
+1
+2
+Input
+10
+L 100
+R 100000
+R 123
+L 101
+? 123
+L 10
+R 115
+? 100
+R 110
+? 115
+Output
+0
+2
+1
+Note
+Let's take a look at the first example and let's consider queries: 
+ 
+ The shelf will look like [1]; 
+ The shelf will look like [1, 2]; 
+ The shelf will look like [1, 2, 3]; 
+ The shelf looks like [1, 2, 3] so the answer is 1; 
+ The shelf will look like [4, 1, 2, 3]; 
+ The shelf looks like [4, 1, 2, 3] so the answer is 1; 
+ The shelf will look like [5, 4, 1, 2, 3]; 
+ The shelf looks like [5, 4, 1, 2, 3] so the answer is 2. 
+Let's take a look at the second example and let's consider queries: 
+ 
+ The shelf will look like [100]; 
+ The shelf will look like [100, 100000]; 
+ The shelf will look like [100, 100000, 123]; 
+ The shelf will look like [101, 100, 100000, 123]; 
+ The shelf looks like [101, 100, 100000, 123] so the answer is 0; 
+ The shelf will look like [10, 101, 100, 100000, 123]; 
+ The shelf will look like [10, 101, 100, 100000, 123, 115]; 
+ The shelf looks like [10, 101, 100, 100000, 123, 115] so the answer is 2; 
+ The shelf will look like [10, 101, 100, 100000, 123, 115, 110]; 
+ The shelf looks like [10, 101, 100, 100000, 123, 115] so the answer is 1.
+*/
+
+#include <stdio.h>
+#include <algorithm>
+#include <iostream>
+
+typedef long long int ll;
+typedef unsigned long long int ull;
+#define dbg printf("in\n")
+#define nl printf("\n");
+#define N 200100
+#define inf 100000000
+#define sf(n) scanf("%d", &n)
+#define sff(n, m) scanf("%d%d", &n, &m)
+#define sfl(n) scanf("%I64d", &n)
+#define sffl(n, m) scanf("%I64d%I64d", &n, &m)
+#define pf(n) printf("%d", n)
+#define pff(n, m) printf("%d %d\n", n, m)
+#define pffl(n, m) printf("%I64d %I64d\n", n, m)
+#define pfl(n) printf("%I64d", n)
+#define pfs(s) printf("%s", s)
+#define pb push_back
+#define pp pair<int, int>
+#define mod 1000000007
+using namespace std;
+struct dat {
+  int l, r;
+  int t;
+  dat() {}
+};
+dat a[N];
+int main() {
+  int i, j, k;
+  int n, m;
+  int l, r, tot;
+  int x, y;
+  char ch;
+  sf(n);
+  l = r = tot = 0;
+  for (i = 0; i < n; i++) {
+    cin >> ch;
+    sf(m);
+    if (ch == 'L') {
+      // Increment left counter and assign current position to book m
+      l++;
+      a[m].l = l;
+      a[m].t = 1;
+      a[m].r = tot++; // Assign current total to right position
+    } else if (ch == 'R') {
+      // Increment right counter and assign current position to book m
+      r++;
+      a[m].r = r;
+      a[m].t = 2;
+      a[m].l = tot++; // Assign current total to left position
+    } else {
+      // Query type: calculate distance to leftmost or rightmost
+      if (a[m].t == 2) {
+        // Book was added on the right, find distance from right edge and left edge
+        y = r - a[m].r;
+        x = tot - y - 1;
+      } else {
+        // Book was added on the left, find distance from left edge and right edge
+        x = l - a[m].l;
+        y = tot - x - 1;
+      }
+      pf(min(x, y)); // Return minimum steps needed to move book to edge
+      pfs("\n");
+    }
+  }
+  return 0;
+}
+
+
+// https://github.com/VaHiX/codeForces/
